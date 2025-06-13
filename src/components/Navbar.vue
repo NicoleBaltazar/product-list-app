@@ -18,8 +18,8 @@
       <!-- Right: Navigation links -->
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" v-if="isAdmin">
-          <router-link to="/admin" class="btn btn-outline-light me-2"
-            >Admin Dashboard</router-link
+          <router-link to="/admin" class="btn btn-outline-light me-2">
+            🛠 Admin Dashboard</router-link
           >
           <button @click="logout" class="btn btn-outline-danger btn-sm">
             Logout
