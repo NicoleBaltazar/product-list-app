@@ -46,6 +46,20 @@ export const useProductStore = defineStore("productStore", () => {
     products.value.unshift(createdProduct); // Add to top of the list
   };
 
+  //DELETE
+  const deleteProduct = async (id) => {
+    const res = await fetch(`${API_BASE}/products/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to delete product");
+    }
+
+    // Remove from local list
+    products.value = products.value.filter((p) => p.id !== id);
+  };
+
   const setCategory = (id) => {
     selectedCategoryId.value = id;
   };
