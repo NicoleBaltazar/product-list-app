@@ -31,7 +31,9 @@ import ProductFilterSidebar from "./components/ProductFilterSidebar.vue";
 </script>
 
  -->
+<!-- For many pages -->
 <template>
+  <!-- Navbar will remain in all pages -->
   <Navbar />
   <router-view />
 </template>

@@ -11,5 +11,5 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const app = createApp(App);
 app.use(createPinia());
-app.use(router);
+app.use(router); //new added for the routing
 app.mount("#app");

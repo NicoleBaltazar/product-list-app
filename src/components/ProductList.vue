@@ -21,6 +21,7 @@
         v-for="product in paginatedProducts"
         :key="product.id"
       >
+        <!-- Product cards -->
         <div class="card h-100 shadow-sm">
           <img
             :src="product.images[1]"
