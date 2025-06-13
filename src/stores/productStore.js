@@ -9,7 +9,7 @@ export const useProductStore = defineStore("productStore", () => {
   const selectedCategoryId = ref(null); //selected category by the user
   const categories = ref([]); // list of categories
 
-  //for other filtering
+  //   for other filtering
   const sortOrder = ref("none"); // 'asc' or 'desc'
   const minPrice = ref(null);
   const maxPrice = ref(null);
@@ -32,6 +32,7 @@ export const useProductStore = defineStore("productStore", () => {
     sortOrder.value = order;
   };
 
+  //   Filtering features
   const filteredProducts = computed(() => {
     let result = products.value;
 
@@ -66,21 +67,15 @@ export const useProductStore = defineStore("productStore", () => {
     return result;
   });
 
-  //   const filteredProducts = computed(() => {
-  //     return products.value
-  //       .filter(
-  //         (
-  //           product //filter#1: filter by word search
-  //         ) =>
-  //           product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-  //       )
-  //       .filter((product) => {
-  //         //filter#2 filter by selected category
-  //         if (!selectedCategoryId.value) return true;
-  //         return product.category.id === selectedCategoryId.value;
-  //       });
-  //   });
+  // Remove from favorites
+  const removeFromFavorites = (productId) => {
+    favorites.value = favorites.value.filter((p) => p.id !== productId);
+  };
 
+  // Remove from cart
+  const removeFromCart = (productId) => {
+    cart.value = cart.value.filter((p) => p.id !== productId);
+  };
   return {
     products,
     searchTerm,
@@ -89,10 +84,16 @@ export const useProductStore = defineStore("productStore", () => {
     sortOrder,
     minPrice,
     maxPrice,
+    favorites,
+    cart,
+    filteredProducts,
     fetchProducts,
     fetchCategories,
     setCategory,
     setSortOrder,
-    filteredProducts,
+    addToFavorites,
+    addToCart,
+    removeFromFavorites,
+    removeFromCart,
   };
 });
