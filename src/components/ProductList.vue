@@ -72,7 +72,7 @@ import { useProductStore } from "../stores/productStore";
 
 const productStore = useProductStore();
 const currentPage = ref(1);
-const itemsPerPage = 24;
+const itemsPerPage = 20;
 
 // Compute the products for the current page | should be 24
 const paginatedProducts = computed(() => {
