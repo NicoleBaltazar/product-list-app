@@ -8,7 +8,7 @@
         v-model="productStore.searchTerm"
         type="text"
         class="form-control form-control-lg"
-        placeholder="🔍 Search products..."
+        placeholder="🔍 Search products here..."
       />
     </div>
 
@@ -98,7 +98,7 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 </script>
-
+<!-- 
 <style scoped>
 .product-grid {
   display: grid;
@@ -126,4 +126,4 @@ onMounted(() => {
   font-size: 0.9rem;
   color: #666;
 }
-</style>
+</style> -->
