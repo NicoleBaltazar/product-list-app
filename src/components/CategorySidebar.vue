@@ -17,6 +17,12 @@
       @click="productStore.setCategory(category.id)"
     >
       {{ category.name }}
+      <!-- <img
+        :src="category.image"
+        class="card-img-top object-fit-cover"
+        alt="Product Image"
+        style="height: 200px"
+      /> -->
     </button>
   </div>
 </template>

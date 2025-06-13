@@ -24,7 +24,7 @@
         <!-- Product cards -->
         <div class="card h-100 shadow-sm">
           <img
-            :src="product.images[1]"
+            :src="product.images[0]"
             class="card-img-top object-fit-cover"
             alt="Product Image"
             style="height: 200px"

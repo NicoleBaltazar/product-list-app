@@ -86,7 +86,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
-// import ProductFormModal from "@/components/ProductFormModal.vue";
+import ProductFormModal from "@/components/ProductFormModal.vue";
 
 const productStore = useProductStore();
 const currentPage = ref(1);

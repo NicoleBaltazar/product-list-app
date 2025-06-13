@@ -28,6 +28,24 @@ export const useProductStore = defineStore("productStore", () => {
     categories.value = await response.json();
   };
 
+  //CREATE
+  const createProduct = async (newProduct) => {
+    const res = await fetch(`${API_BASE}/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to create product");
+    }
+
+    const createdProduct = await res.json();
+    products.value.unshift(createdProduct); // Add to top of the list
+  };
+
   const setCategory = (id) => {
     selectedCategoryId.value = id;
   };
@@ -113,5 +131,7 @@ export const useProductStore = defineStore("productStore", () => {
     addToCart,
     removeFromFavorites,
     removeFromCart,
+    createProduct,
+    deleteProduct,
   };
 });
