@@ -10,6 +10,8 @@
         class="form-control form-control-lg"
         placeholder="🔍 Search products here..."
       />
+      <p>Favorites count: {{ productStore.favorites.length }}</p>
+      <p>Cart count: {{ productStore.cart.length }}</p>
     </div>
 
     <!-- Product Grid -->
@@ -30,6 +32,20 @@
             <h5 class="card-title">{{ product.title }}</h5>
             <p class="card-text text-muted mb-1">\${{ product.price }}</p>
             <span class="badge bg-secondary">{{ product.category.name }}</span>
+          </div>
+          <div class="mt-auto d-flex justify-content-between">
+            <button
+              class="btn btn-outline-danger btn-sm"
+              @click="productStore.addToFavorites(product)"
+            >
+              ❤️ Favorite
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              @click="productStore.addToCart(product)"
+            >
+              🛒 Add to Cart
+            </button>
           </div>
         </div>
       </div>

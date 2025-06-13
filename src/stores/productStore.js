@@ -14,6 +14,10 @@ export const useProductStore = defineStore("productStore", () => {
   const minPrice = ref(null);
   const maxPrice = ref(null);
 
+  //   on each product cards
+  const favorites = ref([]);
+  const cart = ref([]);
+
   const fetchProducts = async () => {
     const response = await fetch(`${API_BASE}/products`);
     products.value = await response.json();
@@ -66,6 +70,20 @@ export const useProductStore = defineStore("productStore", () => {
 
     return result;
   });
+  // Add to Favorites
+  const addToFavorites = (product) => {
+    const exists = favorites.value.some((p) => p.id === product.id);
+    if (!exists) {
+      favorites.value = [...favorites.value, product]; // force reactivity
+    }
+  };
+  //  Add to Cart
+  const addToCart = (product) => {
+    const exists = cart.value.some((p) => p.id === product.id);
+    if (!exists) {
+      cart.value = [...cart.value, product]; // force reactivity
+    }
+  };
 
   // Remove from favorites
   const removeFromFavorites = (productId) => {
