@@ -9,6 +9,9 @@ export const useProductStore = defineStore("productStore", () => {
   const selectedCategoryId = ref(null); //selected category by the user
   const categories = ref([]); // list of categories
 
+  //for other filtering
+  const sortOrder = ref("none"); // 'asc' or 'desc'
+
   const fetchProducts = async () => {
     const response = await fetch(`${API_BASE}/products`);
     products.value = await response.json();
@@ -23,29 +26,63 @@ export const useProductStore = defineStore("productStore", () => {
     selectedCategoryId.value = id;
   };
 
+  const setSortOrder = (order) => {
+    sortOrder.value = order;
+  };
+
   const filteredProducts = computed(() => {
-    return products.value
-      .filter(
-        (
-          product //filter#1: filter by word search
-        ) =>
-          product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-      )
-      .filter((product) => {
-        //filter#2 filter by selected category
-        if (!selectedCategoryId.value) return true;
-        return product.category.id === selectedCategoryId.value;
-      });
+    let result = products.value;
+
+    // Filter#1: filter by word search
+    if (searchTerm.value) {
+      result = result.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+      );
+    }
+
+    // Filter#2: filter by selected category
+    if (selectedCategoryId.value !== null) {
+      result = result.filter(
+        (product) => product.category.id === selectedCategoryId.value
+      );
+    }
+
+    // Sort
+    if (sortOrder.value === "asc") {
+      result = [...result].sort((a, b) => a.price - b.price);
+    } else if (sortOrder.value === "desc") {
+      result = [...result].sort((a, b) => b.price - a.price);
+    }
+
+    return result;
   });
+
+  //   const filteredProducts = computed(() => {
+  //     return products.value
+  //       .filter(
+  //         (
+  //           product //filter#1: filter by word search
+  //         ) =>
+  //           product.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+  //       )
+  //       .filter((product) => {
+  //         //filter#2 filter by selected category
+  //         if (!selectedCategoryId.value) return true;
+  //         return product.category.id === selectedCategoryId.value;
+  //       });
+  //   });
 
   return {
     products,
     searchTerm,
     selectedCategoryId,
     categories,
+    sortOrder,
     fetchProducts,
     fetchCategories,
     setCategory,
+
+    setSortOrder,
     filteredProducts,
   };
 });

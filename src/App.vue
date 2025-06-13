@@ -10,6 +10,7 @@
 
       <!-- Main -->
       <div class="col-md-9">
+        <ProductFilters />
         <ProductList />
       </div>
     </div>
@@ -19,6 +20,7 @@
 <script setup>
 import ProductList from "./components/ProductList.vue";
 import CategorySidebar from "./components/CategorySidebar.vue";
+import ProductFilters from "./components/ProductFilters.vue";
 </script>
 
 <style scoped>
