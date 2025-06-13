@@ -3,15 +3,20 @@
     <h1 class="text-center my-5">Product CRUD App</h1>
 
     <div class="row">
-      <!-- Sidebar -->
+      <!-- Left: Category Sidebar -->
       <div class="col-md-2">
         <CategorySidebar />
       </div>
 
-      <!-- Main -->
-      <div class="col-md-9">
-        <ProductFilters />
+      <!-- Center: Main -->
+      <div class="col-md-8">
+        <ProductSort />
         <ProductList />
+      </div>
+
+      <!-- Right: Filter Sidebar -->
+      <div class="col-md-2 mb-4">
+        <ProductFilterSidebar />
       </div>
     </div>
   </div>
@@ -20,7 +25,8 @@
 <script setup>
 import ProductList from "./components/ProductList.vue";
 import CategorySidebar from "./components/CategorySidebar.vue";
-import ProductFilters from "./components/ProductFilters.vue";
+import ProductSort from "./components/ProductSort.vue";
+import ProductFilterSidebar from "./components/ProductFilterSidebar.vue";
 </script>
 
 <style scoped>

@@ -11,6 +11,8 @@ export const useProductStore = defineStore("productStore", () => {
 
   //for other filtering
   const sortOrder = ref("none"); // 'asc' or 'desc'
+  const minPrice = ref(null);
+  const maxPrice = ref(null);
 
   const fetchProducts = async () => {
     const response = await fetch(`${API_BASE}/products`);
@@ -46,6 +48,13 @@ export const useProductStore = defineStore("productStore", () => {
         (product) => product.category.id === selectedCategoryId.value
       );
     }
+    //Filter#3: filter by price range
+    if (minPrice.value !== null && minPrice.value !== "") {
+      result = result.filter((product) => product.price >= minPrice.value);
+    }
+    if (maxPrice.value !== null && maxPrice.value !== "") {
+      result = result.filter((product) => product.price <= maxPrice.value);
+    }
 
     // Sort
     if (sortOrder.value === "asc") {
@@ -78,10 +87,11 @@ export const useProductStore = defineStore("productStore", () => {
     selectedCategoryId,
     categories,
     sortOrder,
+    minPrice,
+    maxPrice,
     fetchProducts,
     fetchCategories,
     setCategory,
-
     setSortOrder,
     filteredProducts,
   };
