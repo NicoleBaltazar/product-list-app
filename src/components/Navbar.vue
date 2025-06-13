@@ -17,9 +17,17 @@
 
       <!-- Right: Navigation links -->
       <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" v-if="isAdmin">
+          <router-link to="/admin" class="btn btn-outline-light me-2"
+            >Admin Dashboard</router-link
+          >
+          <button @click="logout" class="btn btn-outline-danger btn-sm">
+            Logout
+          </button>
+        </ul>
         <ul
           class="navbar-nav ms-auto mb-2 mb-lg-0"
-          v-if="userStore.user && !isLoginPage"
+          v-if="!isAdmin && userStore.user && !isLoginPage"
         >
           <li class="nav-item me-3">
             <router-link to="/favorites" class="nav-link">
@@ -61,6 +69,7 @@ const userStore = useUserStore();
 
 // Check if current route is the login page
 const isLoginPage = computed(() => route.path === "/login");
+const isAdmin = computed(() => userStore.user?.role === "admin");
 
 const logout = () => {
   userStore.logout();

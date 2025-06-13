@@ -34,7 +34,7 @@
             <p class="card-text text-muted mb-1">\${{ product.price }}</p>
             <span class="badge bg-secondary">{{ product.category.name }}</span>
           </div>
-          <div class="mt-auto d-flex justify-content-between">
+          <div v-if="!isAdmin" class="mt-auto d-flex justify-content-between">
             <button
               class="btn btn-outline-danger btn-sm"
               @click="productStore.addToFavorites(product)"
@@ -86,10 +86,15 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useProductStore } from "../stores/productStore";
+import { useUserStore } from "@/stores/userStore"; // adjust path if needed
 
 const productStore = useProductStore();
+const userStore = useUserStore();
+
 const currentPage = ref(1);
 const itemsPerPage = 20;
+
+const isAdmin = computed(() => userStore.user?.role === "admin");
 
 // Compute the products for the current page | should be 24
 const paginatedProducts = computed(() => {
