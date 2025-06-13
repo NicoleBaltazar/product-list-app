@@ -18,6 +18,7 @@ export const useProductStore = defineStore("productStore", () => {
   const favorites = ref([]);
   const cart = ref([]);
 
+  //   READ
   const fetchProducts = async () => {
     const response = await fetch(`${API_BASE}/products`);
     products.value = await response.json();
@@ -44,6 +45,29 @@ export const useProductStore = defineStore("productStore", () => {
 
     const createdProduct = await res.json();
     products.value.unshift(createdProduct); // Add to top of the list
+  };
+
+  //   UPDATE
+  const updateProduct = async (id, updatedData) => {
+    const res = await fetch(`${API_BASE}/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to update product");
+    }
+
+    const updatedProduct = await res.json();
+
+    // Update local state
+    const index = products.value.findIndex((p) => p.id === id);
+    if (index !== -1) {
+      products.value[index] = updatedProduct;
+    }
   };
 
   //DELETE
@@ -146,6 +170,7 @@ export const useProductStore = defineStore("productStore", () => {
     removeFromFavorites,
     removeFromCart,
     createProduct,
+    updateProduct,
     deleteProduct,
   };
 });

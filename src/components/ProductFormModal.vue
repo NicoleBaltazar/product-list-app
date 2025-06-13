@@ -50,7 +50,7 @@
               ></textarea>
             </div>
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label class="form-label">Category ID</label>
               <input
                 v-model.number="form.categoryId"
@@ -58,6 +58,23 @@
                 class="form-control"
                 required
               />
+            </div> -->
+            <div class="mb-3">
+              <label class="form-label">Category</label>
+              <select
+                v-model.number="form.categoryId"
+                class="form-select"
+                required
+              >
+                <option disabled value="">-- Select a Category --</option>
+                <option
+                  v-for="category in productStore.categories"
+                  :key="category.id"
+                  :value="category.id"
+                >
+                  {{ category.name }}
+                </option>
+              </select>
             </div>
 
             <div class="mb-3">
@@ -132,6 +149,9 @@ watch(
   },
   { immediate: true }
 );
+onMounted(() => {
+  productStore.fetchCategories();
+});
 
 const handleSubmit = async () => {
   const payload = {
