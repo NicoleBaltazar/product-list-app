@@ -17,7 +17,10 @@
 
       <!-- Right: Navigation links -->
       <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul
+          class="navbar-nav ms-auto mb-2 mb-lg-0"
+          v-if="userStore.user && !isLoginPage"
+        >
           <li class="nav-item me-3">
             <router-link to="/favorites" class="nav-link">
               ❤️ Favorites
@@ -32,17 +35,32 @@
             </button>
           </li>
         </ul>
+
+        <!-- If not logged in or on login page -->
+        <ul
+          class="navbar-nav ms-auto"
+          v-else-if="isLoginPage || !userStore.user"
+        >
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore"; // adjust path if needed
+import { computed } from "vue";
 
 const router = useRouter();
+const route = useRoute();
 const userStore = useUserStore();
+
+// Check if current route is the login page
+const isLoginPage = computed(() => route.path === "/login");
 
 const logout = () => {
   userStore.logout();
