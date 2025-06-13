@@ -1,17 +1,29 @@
-<script setup>
-import ProductList from "./components/ProductList.vue";
-</script>
-
 <template>
-  <div>
-    <h1>Product CRUD App</h1>
-    <ProductList />
+  <div class="container-fluid mx-2">
+    <h1 class="text-center my-5">Product CRUD App</h1>
+
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2">
+        <CategorySidebar />
+      </div>
+
+      <!-- Main -->
+      <div class="col-md-9">
+        <ProductList />
+      </div>
+    </div>
   </div>
 </template>
 
+<script setup>
+import ProductList from "./components/ProductList.vue";
+import CategorySidebar from "./components/CategorySidebar.vue";
+</script>
+
 <style scoped>
-h1 {
+/* h1 {
   text-align: center;
   margin-top: 2rem;
-}
+} */
 </style>
