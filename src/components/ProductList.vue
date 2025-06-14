@@ -23,7 +23,6 @@
         :key="product.id"
       >
         <!-- Product cards -->
-        <!-- Product cards -->
         <div
           class="card h-100 shadow-sm p-3"
           style="background-color: #ffffff; color: #333333"
@@ -79,33 +78,6 @@
     </div>
 
     <!-- Pagination -->
-    <!-- <nav class="d-flex justify-content-center mt-4">
-      <ul class="pagination">
-        <li
-          class="page-item"
-          :class="{ disabled: currentPage === 1 }"
-          @click="goToPage(currentPage - 1)"
-        >
-          <button class="page-link text-black">Previous</button>
-        </li>
-        <li
-          v-for="page in totalPages"
-          :key="page"
-          class="page-item"
-          :class="{ active: currentPage === page }"
-          @click="goToPage(page)"
-        >
-          <button class="page-link">{{ page }}</button>
-        </li>
-        <li
-          class="page-item"
-          :class="{ disabled: currentPage === totalPages }"
-          @click="goToPage(currentPage + 1)"
-        >
-          <button class="page-link text-black">Next</button>
-        </li>
-      </ul>
-    </nav> -->
     <Pagination
       :currentPage="currentPage"
       :totalPages="totalPages"

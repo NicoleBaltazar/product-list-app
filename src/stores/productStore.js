@@ -105,19 +105,6 @@ export const useProductStore = defineStore("productStore", () => {
       );
     }
 
-    // // Filter#2: filter by selected category
-    // if (selectedCategoryId.value !== null) {
-    //   result = result.filter(
-    //     (product) => product.category.id === selectedCategoryId.value
-    //   );
-    // }
-
-    // // Filter#2: filter by selected category IDs (multi-select)
-    // if (selectedCategoryIds.value.length > 0) {
-    //   result = result.filter((product) =>
-    //     selectedCategoryIds.value.includes(product.category.id)
-    //   );
-    // }
     // Filter#2a: multi-select category filter
     if (selectedCategoryIds.value.length > 0) {
       // Clear single category selection to avoid conflicts

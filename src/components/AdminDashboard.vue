@@ -47,23 +47,7 @@
             {{ product.category?.name || product.category }}
           </td>
           <td class="py-3 px-4">{{ formatDate(product.updatedAt) }}</td>
-          <!-- Update and Delete products -->
-          <!-- <td class="py-3 px-4">
-            <button
-              class="btn btn-warning btn-sm me-2 px-3 py-2"
-              @click="openEditModal(product)"
-            >
-              <i class="bi bi-pencil-square"></i>
-              Edit
-            </button>
-            <button
-              class="btn btn-danger btn-sm px-3 py-2"
-              @click="deleteProduct(product.id)"
-            >
-              <i class="bi bi-trash3"></i>
-              Delete
-            </button>
-          </td> -->
+          <!-- Update and Delete in api -->
           <td class="py-3 px-4">
             <button
               class="btn btn-warning btn-sm me-2 d-flex align-items-center mb-2 gap-2 px-3 py-2"
@@ -211,17 +195,12 @@ const closeModal = () => {
   showModal.value = false;
   selectedProduct.value = null;
 };
-
+// confirm before delete
 const confirmDelete = (product) => {
   productToDelete.value = product;
   showDeleteConfirm.value = true;
 };
-
-// const deleteProduct = async (id) => {
-//   if (confirm("Are you sure you want to delete this product?")) {
-//     await productStore.deleteProduct(id);
-//   }
-// };
+//Final delete
 const performDelete = async () => {
   try {
     await productStore.deleteProduct(productToDelete.value);
