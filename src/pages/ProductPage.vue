@@ -23,3 +23,9 @@ import ProductSort from "@/components/ProductSort.vue";
 import ProductList from "@/components/ProductList.vue";
 import ProductFilterSidebar from "@/components/ProductFilterSidebar.vue";
 </script>
+
+<style>
+.container {
+  /* background-color: #6b705c;  */
+}
+</style>

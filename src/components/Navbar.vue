@@ -1,6 +1,6 @@
 <!-- src/components/Navbar.vue -->
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
     <div class="container-fluid">
       <!-- Left: Brand -->
       <router-link to="/" class="navbar-brand fw-bold">Rkived</router-link>

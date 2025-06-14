@@ -10,8 +10,6 @@
         class="form-control form-control-lg"
         placeholder="🔍 Search products here..."
       />
-      <p>Favorites count: {{ productStore.favorites.length }}</p>
-      <p>Cart count: {{ productStore.cart.length }}</p>
     </div>
 
     <!-- Product Grid -->
@@ -22,7 +20,11 @@
         :key="product.id"
       >
         <!-- Product cards -->
-        <div class="card h-100 shadow-sm">
+        <!-- Product cards -->
+        <div
+          class="card h-100 shadow-sm p-3"
+          style="background-color: #ffffff; color: #333333"
+        >
           <img
             :src="product.images[0]"
             class="card-img-top object-fit-cover"
@@ -31,8 +33,15 @@
           />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ product.title }}</h5>
-            <p class="card-text text-muted mb-1">\${{ product.price }}</p>
-            <span class="badge bg-secondary">{{ product.category.name }}</span>
+            <p class="card-text mb-1" style="color: #ff6f61">
+              ${{ product.price }}
+            </p>
+            <span
+              class="badge p-2"
+              style="background-color: #28a745; color: #ffffff"
+            >
+              {{ product.category.name }}
+            </span>
           </div>
           <div v-if="!isAdmin" class="mt-auto d-flex justify-content-between">
             <button
@@ -119,32 +128,3 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 </script>
-<!-- 
-<style scoped>
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-.product-card {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  background: #f9f9f9;
-}
-
-.product-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
-}
-
-.category {
-  font-size: 0.9rem;
-  color: #666;
-}
-</style> -->
