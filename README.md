@@ -1,31 +1,32 @@
 # Vue 3 + Vite
 
-HOW TO RUN:
+**HOW TO RUN:**
 npm run dev
 
-TECHNOLOGY USED:
-
+**TECHNOLOGY USED:**
 - Vue JS
 - Bootstrap
 
-VUE ECOSYSTEM USED:
 
+**VUE ECOSYSTEM USED:**
 - Vue router (for pages)
 - Pinia (for state management)
 - Vue Devtools in Chrome extension
 
-FAKE API USED:
+
+**FAKE API USED:**
 https://fakeapi.platzi.com/
 
-FEATURES:
 
+**FEATURES:**
 - Product Listing
 - Search/Filter
 - CRUD
 
-DETAILED EXPLANATION OF FEATURES:
 
-A. FEATURES FOR ALL USERS
+**DETAILED EXPLANATION OF FEATURES:**
+
+**A. FEATURES FOR ALL USERS**
 
 1. Login
 
@@ -55,7 +56,9 @@ A. FEATURES FOR ALL USERS
 
 - Although there is already a category selection, this feature allows the user to select more than one category. If they like to see the available products from 2 or more categories, then they can use this filter.
 
-B. FEATURES FOR CUSTOMERS ONLY
+  
+
+**B. FEATURES FOR CUSTOMERS ONLY**
 
 1. Add to Favorites
 
@@ -73,7 +76,9 @@ B. FEATURES FOR CUSTOMERS ONLY
 
 - This page displays the products that were added to cart by the user. Users can select and remove products here
 
-C. FEATURES FOR ADMINS ONLY
+  
+
+**C. FEATURES FOR ADMINS ONLY**
 
 1. Admin dashboard
 
@@ -91,6 +96,8 @@ C. FEATURES FOR ADMINS ONLY
 
 - In the Admin Dashboard, the admins can delete/remove exisitng products from the api. This is part of the DELETE
 
-LIMITATIONS:
+
+
+**LIMITATIONS:**
 
 - This is only a product listing web application. This is not an e-commerce, it is not transactional. This is for the purpose of completing the exercise for Front End Developer (VUE.JS)
