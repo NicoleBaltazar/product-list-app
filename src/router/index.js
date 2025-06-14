@@ -4,7 +4,7 @@ import LoginPage from "../pages/LoginPage.vue";
 import ProductPage from "../pages/ProductPage.vue";
 import FavoritesPage from "../pages/FavoritesPage.vue";
 import CartPage from "../pages/CartPage.vue";
-import AdminDashboard from "@/pages/AdminDashboard.vue";
+import AdminPage from "@/pages/AdminPage.vue";
 import { useUserStore } from "@/stores/userStore";
 
 const routes = [
@@ -13,8 +13,8 @@ const routes = [
 
   {
     path: "/admin",
-    name: "AdminDashboard",
-    component: AdminDashboard,
+    name: "AdminPage",
+    component: AdminPage,
     meta: { requiresAuth: true, adminOnly: true },
   },
 

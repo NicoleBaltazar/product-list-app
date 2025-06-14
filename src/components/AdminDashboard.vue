@@ -18,6 +18,7 @@
       <thead class="table-success">
         <tr class="bg-success" style="background-color: #198754; color: white">
           <th class="py-3 px-4">ID</th>
+          <th class="py-3 px-4">Image</th>
           <th class="py-3 px-4">Title</th>
           <th class="py-3 px-4">Price</th>
           <th class="py-3 px-4">Category</th>
@@ -28,6 +29,18 @@
       <tbody>
         <tr v-for="product in paginatedProducts" :key="product.id">
           <td class="py-3 px-4">{{ product.id }}</td>
+          <td class="py-3 px-4">
+            <img
+              :src="product.images[0]"
+              alt="Product Image"
+              style="
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 6px;
+              "
+            />
+          </td>
           <td class="py-3 px-4">{{ product.title }}</td>
           <td class="py-3 px-4">${{ product.price }}</td>
           <td class="py-3 px-4">
@@ -157,12 +170,12 @@ const goBack = () => {
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return productStore.products.slice(start, end);
+  return productStore.filteredProducts.slice(start, end);
 });
 
 // Total pages
 const totalPages = computed(() => {
-  return Math.ceil(productStore.products.length / itemsPerPage);
+  return Math.ceil(productStore.filteredProducts.length / itemsPerPage);
 });
 
 // Go to a specific page

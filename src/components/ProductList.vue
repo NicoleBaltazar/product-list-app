@@ -49,19 +49,33 @@
           <div v-if="!isAdmin" class="mt-auto d-flex justify-content-between">
             <button
               class="btn btn-outline-danger btn-sm"
-              @click="productStore.addToFavorites(product)"
+              @click="
+                productStore.addToFavorites(product);
+                showToast('Added to Favorites!');
+              "
             >
               ❤️ Favorite
             </button>
             <button
               class="btn btn-outline-primary btn-sm"
-              @click="productStore.addToCart(product)"
+              @click="
+                productStore.addToCart(product);
+                showToast('Added to Cart!');
+              "
             >
               🛒 Add to Cart
             </button>
           </div>
         </div>
       </div>
+    </div>
+    <!-- Centered Toast Notification -->
+    <div
+      v-if="toastMessage"
+      class="position-fixed top-50 start-50 translate-middle bg-dark text-white px-4 py-3 rounded shadow"
+      style="z-index: 1055; min-width: 300px; text-align: center"
+    >
+      {{ toastMessage }}
     </div>
 
     <!-- Pagination -->
@@ -113,6 +127,14 @@ const currentPage = ref(1);
 const itemsPerPage = 20;
 
 const isAdmin = computed(() => userStore.user?.role === "admin");
+const toastMessage = ref("");
+
+const showToast = (message) => {
+  toastMessage.value = message;
+  setTimeout(() => {
+    toastMessage.value = "";
+  }, 2000);
+};
 
 // Compute the products for the current page | should be 24
 const paginatedProducts = computed(() => {

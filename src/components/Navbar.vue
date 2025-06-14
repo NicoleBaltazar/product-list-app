@@ -30,12 +30,14 @@
           v-if="!isAdmin && userStore.user && !isLoginPage"
         >
           <li class="nav-item me-3">
-            <router-link to="/favorites" class="nav-link">
+            <router-link to="/favorites" class="nav-link text-white">
               ❤️ Favorites
             </router-link>
           </li>
           <li class="nav-item me-3">
-            <router-link to="/cart" class="nav-link"> 🛒 Cart </router-link>
+            <router-link to="/cart" class="nav-link text-white">
+              🛒 Cart
+            </router-link>
           </li>
           <li class="nav-item mt-1">
             <button @click="logout" class="btn btn-outline-danger btn-sm">

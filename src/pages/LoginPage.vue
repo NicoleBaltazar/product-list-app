@@ -48,15 +48,31 @@
 
       <!-- Right Description Side -->
       <div
-        class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center gradient-custom-2 text-white text-center px-4"
+        class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center gradient-custom-2 text-white px-5"
       >
-        <div>
-          <h4 class="fw-bold mb-3">We are more than just a company</h4>
-          <p class="small">
-            Rkived helps you track, manage, and preserve what matters most.
+        <div class="text-white text-start w-100">
+          <h1 class="d-lg-flex align-items-center justify-content-center">
+            ...
+          </h1>
+          <h1
+            class="fw-bold mb-3"
+            style="
+              font-size: 3rem;
+
+              letter-spacing: 0.5px;
+              font-weight: 300;
+              margin-left: 20px;
+            "
+          >
+            <span style="font-size: 3rem; font-weight: 600">R</span>kived helps
+            you track, manage, and preserve what matters most.
+            <br />
             Whether you're archiving memories or managing a product collection,
             we're here to help.
-          </p>
+          </h1>
+          <h1 class="d-lg-flex align-items-center justify-content-center">
+            ...
+          </h1>
         </div>
       </div>
     </div>
