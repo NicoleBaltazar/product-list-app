@@ -1,4 +1,4 @@
-# Vue 3 + Vite
+# RKIVED | PRODUCT LISTING WEB APP
 
 **HOW TO RUN:**
 npm run dev
