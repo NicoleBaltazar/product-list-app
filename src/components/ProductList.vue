@@ -69,7 +69,7 @@
           :class="{ disabled: currentPage === 1 }"
           @click="goToPage(currentPage - 1)"
         >
-          <button class="page-link">Previous</button>
+          <button class="page-link text-black">Previous</button>
         </li>
         <li
           v-for="page in totalPages"
@@ -85,7 +85,7 @@
           :class="{ disabled: currentPage === totalPages }"
           @click="goToPage(currentPage + 1)"
         >
-          <button class="page-link">Next</button>
+          <button class="page-link text-black">Next</button>
         </li>
       </ul>
     </nav>
@@ -128,3 +128,15 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 </script>
+
+<style scoped>
+.page-item.active .page-link {
+  background-color: #28a745;
+  border-color: white;
+  color: white;
+}
+
+.page-link {
+  cursor: pointer;
+}
+</style>

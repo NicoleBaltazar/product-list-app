@@ -13,6 +13,7 @@ export const useProductStore = defineStore("productStore", () => {
   const sortOrder = ref("none"); // 'asc' or 'desc'
   const minPrice = ref(null);
   const maxPrice = ref(null);
+  const selectedCategoryIds = ref([]);
 
   //   on each product cards
   const favorites = ref([]);
@@ -86,6 +87,7 @@ export const useProductStore = defineStore("productStore", () => {
 
   const setCategory = (id) => {
     selectedCategoryId.value = id;
+    selectedCategoryIds.value = []; // clear multi-category
   };
 
   const setSortOrder = (order) => {
@@ -103,12 +105,37 @@ export const useProductStore = defineStore("productStore", () => {
       );
     }
 
-    // Filter#2: filter by selected category
-    if (selectedCategoryId.value !== null) {
+    // // Filter#2: filter by selected category
+    // if (selectedCategoryId.value !== null) {
+    //   result = result.filter(
+    //     (product) => product.category.id === selectedCategoryId.value
+    //   );
+    // }
+
+    // // Filter#2: filter by selected category IDs (multi-select)
+    // if (selectedCategoryIds.value.length > 0) {
+    //   result = result.filter((product) =>
+    //     selectedCategoryIds.value.includes(product.category.id)
+    //   );
+    // }
+    // Filter#2a: multi-select category filter
+    if (selectedCategoryIds.value.length > 0) {
+      // Clear single category selection to avoid conflicts
+      selectedCategoryId.value = null;
+
+      result = result.filter((product) =>
+        selectedCategoryIds.value.includes(product.category.id)
+      );
+    }
+
+    // Filter#2b: single category sidebar filter
+    else if (selectedCategoryId.value !== null) {
+      // selectedCategoryIds.value = [];
       result = result.filter(
         (product) => product.category.id === selectedCategoryId.value
       );
     }
+
     //Filter#3: filter by price range
     if (minPrice.value !== null && minPrice.value !== "") {
       result = result.filter((product) => product.price >= minPrice.value);
@@ -154,6 +181,7 @@ export const useProductStore = defineStore("productStore", () => {
     products,
     searchTerm,
     selectedCategoryId,
+    selectedCategoryIds,
     categories,
     sortOrder,
     minPrice,
