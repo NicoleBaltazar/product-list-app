@@ -86,17 +86,34 @@
 
           <!-- Modal Footer -->
           <div class="modal-footer px-4">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success" :disabled="isLoading">
               {{ isEditing ? "Update" : "Create" }}
             </button>
             <button
               type="button"
               class="btn btn-secondary"
+              :disabled="isLoading"
               @click="$emit('close')"
             >
               Cancel
             </button>
           </div>
+
+          <!-- Success Modal -->
+          <!-- Centered Success Toast -->
+          <div
+            v-if="isSuccess"
+            class="position-fixed top-50 start-50 translate-middle alert alert-success shadow-lg text-center fs-5"
+            style="z-index: 9999; width: 400px; padding: 1.5rem 1rem"
+          >
+            ✅
+            {{
+              isEditing ? "Product updated" : "Product created"
+            }}
+            successfully!
+          </div>
+
+          <!-- ========================= -->
         </form>
       </div>
     </div>
@@ -114,6 +131,9 @@ const props = defineProps({
 });
 const emit = defineEmits(["close"]);
 const productStore = useProductStore();
+
+const isLoading = ref(false);
+const isSuccess = ref(false);
 
 const form = ref({
   title: "",
@@ -152,21 +172,32 @@ onMounted(() => {
 });
 
 const handleSubmit = async () => {
-  const payload = {
-    title: form.value.title,
-    price: form.value.price,
-    description: form.value.description,
-    categoryId: form.value.categoryId,
-    images: [form.value.image],
-  };
+  isLoading.value = true;
+  try {
+    const payload = {
+      title: form.value.title,
+      price: form.value.price,
+      description: form.value.description,
+      categoryId: form.value.categoryId,
+      images: [form.value.image],
+    };
 
-  if (props.isEditing && props.product?.id) {
-    await productStore.updateProduct(props.product.id, payload);
-  } else {
-    await productStore.createProduct(payload);
+    if (props.isEditing && props.product?.id) {
+      await productStore.updateProduct(props.product.id, payload);
+    } else {
+      await productStore.createProduct(payload);
+    }
+
+    isSuccess.value = true;
+    setTimeout(() => {
+      isSuccess.value = false;
+      emit("close");
+    }, 1500);
+  } catch (error) {
+    alert("Something went wrong!");
+  } finally {
+    isLoading.value = false;
   }
-
-  emit("close");
 };
 </script>
 
