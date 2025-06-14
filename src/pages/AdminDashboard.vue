@@ -4,15 +4,19 @@
       Admin Dashboard
     </h2>
 
-    <div class="d-flex justify-content-end mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button class="btn btn-outline-secondary" @click="goBack">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
       <button class="btn btn-success" @click="openCreateModal">
+        <!-- Add products -->
         <i class="bi bi-plus-lg text-white"></i> Add Product
       </button>
     </div>
 
     <table class="table table-bordered table-striped">
-      <thead class="text-white" style="background-color: #198754">
-        <tr>
+      <thead class="table-success">
+        <tr class="bg-success" style="background-color: #198754; color: white">
           <th class="py-3 px-4">ID</th>
           <th class="py-3 px-4">Title</th>
           <th class="py-3 px-4">Price</th>
@@ -30,17 +34,36 @@
             {{ product.category?.name || product.category }}
           </td>
           <td class="py-3 px-4">{{ formatDate(product.updatedAt) }}</td>
-          <td class="py-3 px-4">
+          <!-- Update and Delete products -->
+          <!-- <td class="py-3 px-4">
             <button
-              class="btn btn-warning btn-sm me-2"
+              class="btn btn-warning btn-sm me-2 px-3 py-2"
               @click="openEditModal(product)"
             >
+              <i class="bi bi-pencil-square"></i>
               Edit
             </button>
             <button
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger btn-sm px-3 py-2"
               @click="deleteProduct(product.id)"
             >
+              <i class="bi bi-trash3"></i>
+              Delete
+            </button>
+          </td> -->
+          <td class="py-3 px-4">
+            <button
+              class="btn btn-warning btn-sm me-2 d-flex align-items-center mb-2 gap-2 px-3 py-2"
+              @click="openEditModal(product)"
+            >
+              <i class="bi bi-pencil-square"></i>
+              Edit
+            </button>
+            <button
+              class="btn btn-danger btn-sm d-flex align-items-center gap-2 px-3 py-2"
+              @click="deleteProduct(product.id)"
+            >
+              <i class="bi bi-trash3"></i>
               Delete
             </button>
           </td>
@@ -70,7 +93,9 @@ import { ref, onMounted, computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import ProductFormModal from "@/components/ProductFormModal.vue";
 import Pagination from "@/components/Pagination.vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const productStore = useProductStore();
 const currentPage = ref(1);
 const itemsPerPage = 15;
@@ -79,6 +104,10 @@ const showModal = ref(false);
 const isEditing = ref(false);
 const selectedProduct = ref(null);
 
+const goBack = () => {
+  router.back(); // goes to the previous route
+  // Or use router.push("/") to go to a specific route
+};
 // Paginated products
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;

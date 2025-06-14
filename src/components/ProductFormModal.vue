@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal fade show d-block"
+    class="modal fade show d-block rounded-3"
     tabindex="-1"
     role="dialog"
     v-if="show"
@@ -9,18 +9,23 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <form @submit.prevent="handleSubmit">
-          <div class="modal-header">
+          <!-- Modal Header -->
+          <div
+            class="modal-header text-white"
+            style="background-color: #28a745"
+          >
             <h5 class="modal-title">
-              {{ isEditing ? "Edit Product" : "Create Product" }}
+              {{ isEditing ? "Edit Product" : "Add Product" }}
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close btn-close-white"
               @click="$emit('close')"
             ></button>
           </div>
 
-          <div class="modal-body">
+          <!-- Modal Body -->
+          <div class="modal-body px-4 py-3">
             <div class="mb-3">
               <label class="form-label">Title</label>
               <input
@@ -50,15 +55,6 @@
               ></textarea>
             </div>
 
-            <!-- <div class="mb-3">
-              <label class="form-label">Category ID</label>
-              <input
-                v-model.number="form.categoryId"
-                type="number"
-                class="form-control"
-                required
-              />
-            </div> -->
             <div class="mb-3">
               <label class="form-label">Category</label>
               <select
@@ -88,8 +84,9 @@
             </div>
           </div>
 
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">
+          <!-- Modal Footer -->
+          <div class="modal-footer px-4">
+            <button type="submit" class="btn btn-success">
               {{ isEditing ? "Update" : "Create" }}
             </button>
             <button
@@ -149,6 +146,7 @@ watch(
   },
   { immediate: true }
 );
+
 onMounted(() => {
   productStore.fetchCategories();
 });
