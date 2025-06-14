@@ -100,20 +100,40 @@
           </div>
 
           <!-- Success Modal -->
-          <!-- Centered Success Toast -->
           <div
             v-if="isSuccess"
             class="position-fixed top-50 start-50 translate-middle alert alert-success shadow-lg text-center fs-5"
             style="z-index: 9999; width: 400px; padding: 1.5rem 1rem"
           >
             ✅
-            {{
-              isEditing ? "Product updated" : "Product created"
-            }}
+            {{ isEditing ? "Product updated" : "Product created" }}
             successfully!
           </div>
 
           <!-- ========================= -->
+          <!-- Error Modal -->
+          <div
+            v-if="isError"
+            class="modal fade show d-block"
+            tabindex="-1"
+            style="background: rgba(0, 0, 0, 0.5); z-index: 1060"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content border-danger">
+                <div class="modal-header bg-danger text-white">
+                  <h5 class="modal-title">Error</h5>
+                </div>
+                <div class="modal-body">
+                  <p>{{ errorMessage }}</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-danger" @click="isError = false">
+                    OK
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -134,6 +154,8 @@ const productStore = useProductStore();
 
 const isLoading = ref(false);
 const isSuccess = ref(false);
+const isError = ref(false);
+const errorMessage = ref("Something went wrong. Please try again.");
 
 const form = ref({
   title: "",
@@ -194,7 +216,9 @@ const handleSubmit = async () => {
       emit("close");
     }, 1500);
   } catch (error) {
-    alert("Something went wrong!");
+    isError.value = true;
+    errorMessage.value =
+      error.message || "Something went wrong. Please try again.";
   } finally {
     isLoading.value = false;
   }
