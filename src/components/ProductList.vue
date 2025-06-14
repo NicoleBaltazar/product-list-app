@@ -64,7 +64,7 @@
     </div>
 
     <!-- Pagination -->
-    <nav class="d-flex justify-content-center mt-4">
+    <!-- <nav class="d-flex justify-content-center mt-4">
       <ul class="pagination">
         <li
           class="page-item"
@@ -90,7 +90,12 @@
           <button class="page-link text-black">Next</button>
         </li>
       </ul>
-    </nav>
+    </nav> -->
+    <Pagination
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @page-change="goToPage"
+    />
   </div>
 </template>
 
@@ -98,6 +103,7 @@
 import { ref, computed, onMounted } from "vue";
 import { useProductStore } from "../stores/productStore";
 import { useUserStore } from "@/stores/userStore"; // adjust path if needed
+import Pagination from "@/components/Pagination.vue";
 
 const productStore = useProductStore();
 const userStore = useUserStore();

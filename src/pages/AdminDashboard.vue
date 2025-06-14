@@ -1,32 +1,36 @@
 <template>
   <div class="container my-5">
-    <h2 class="mb-4 text-center">Admin Dashboard</h2>
+    <h2 class="mb-4 text-center text-uppercase fw-bold border-bottom pb-2">
+      Admin Dashboard
+    </h2>
 
     <div class="d-flex justify-content-end mb-3">
-      <button class="btn btn-primary" @click="openCreateModal">
-        ➕ Add Product
+      <button class="btn btn-success" @click="openCreateModal">
+        <i class="bi bi-plus-lg text-white"></i> Add Product
       </button>
     </div>
 
     <table class="table table-bordered table-striped">
-      <thead class="text-white" style="background-color: #28a745">
+      <thead class="text-white" style="background-color: #198754">
         <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th>Updated At</th>
-          <th>Actions</th>
+          <th class="py-3 px-4">ID</th>
+          <th class="py-3 px-4">Title</th>
+          <th class="py-3 px-4">Price</th>
+          <th class="py-3 px-4">Category</th>
+          <th class="py-3 px-4">Updated At</th>
+          <th class="py-3 px-4">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="product in paginatedProducts" :key="product.id">
-          <td>{{ product.id }}</td>
-          <td>{{ product.title }}</td>
-          <td>${{ product.price }}</td>
-          <td>{{ product.category?.name || product.category }}</td>
-          <td>{{ formatDate(product.updatedAt) }}</td>
-          <td>
+          <td class="py-3 px-4">{{ product.id }}</td>
+          <td class="py-3 px-4">{{ product.title }}</td>
+          <td class="py-3 px-4">${{ product.price }}</td>
+          <td class="py-3 px-4">
+            {{ product.category?.name || product.category }}
+          </td>
+          <td class="py-3 px-4">{{ formatDate(product.updatedAt) }}</td>
+          <td class="py-3 px-4">
             <button
               class="btn btn-warning btn-sm me-2"
               @click="openEditModal(product)"
@@ -45,33 +49,11 @@
     </table>
 
     <!-- Pagination Controls -->
-    <nav class="d-flex justify-content-center mt-4">
-      <ul class="pagination">
-        <li
-          class="page-item"
-          :class="{ disabled: currentPage === 1 }"
-          @click="goToPage(currentPage - 1)"
-        >
-          <button class="page-link">Previous</button>
-        </li>
-        <li
-          v-for="page in totalPages"
-          :key="page"
-          class="page-item"
-          :class="{ active: currentPage === page }"
-          @click="goToPage(page)"
-        >
-          <button class="page-link">{{ page }}</button>
-        </li>
-        <li
-          class="page-item"
-          :class="{ disabled: currentPage === totalPages }"
-          @click="goToPage(currentPage + 1)"
-        >
-          <button class="page-link">Next</button>
-        </li>
-      </ul>
-    </nav>
+    <Pagination
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @page-change="goToPage"
+    />
 
     <!-- Modal -->
     <ProductFormModal
@@ -87,6 +69,7 @@
 import { ref, onMounted, computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import ProductFormModal from "@/components/ProductFormModal.vue";
+import Pagination from "@/components/Pagination.vue";
 
 const productStore = useProductStore();
 const currentPage = ref(1);
