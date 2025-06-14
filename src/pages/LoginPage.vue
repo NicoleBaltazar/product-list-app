@@ -1,25 +1,21 @@
 <template>
-  <section class="h-100 gradient-form" style="background-color: #eee">
+  <section class="h-100 gradient-form bg-white">
     <div class="row g-0 h-100">
-      <div class="col-lg-6">
-        <div class="card-body p-md- mx-md-4">
-          <div class="text-center">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-              style="width: 185px"
-              alt="logo"
-            />
-            <h4 class="mt-1 mb-5 pb-1">This is The Rkived Team</h4>
+      <!-- Left Form Side -->
+      <div class="col-lg-6 d-flex align-items-center justify-content-center">
+        <div class="p-4 p-md-5 col-lg-8">
+          <div class="text-center mb-4">
+            <span class="fs-1 text-success">📚</span>
+            <h4 class="mt-3 fw-bold text-success">This is The Rkived Team</h4>
           </div>
 
-          <p>Please login to your account</p>
+          <p class="text-muted text-center mb-4">
+            Please login to your account
+          </p>
 
-          <form
-            @submit.prevent="handleLogin"
-            class="col-lg-10 mt-5 container justify-content-center align-items-center"
-          >
+          <form @submit.prevent="handleLogin">
             <div class="mb-3">
-              <label>Email</label>
+              <label class="form-label fw-semibold">Email</label>
               <input
                 v-model="email"
                 type="email"
@@ -27,8 +23,9 @@
                 required
               />
             </div>
+
             <div class="mb-3">
-              <label>Password</label>
+              <label class="form-label fw-semibold">Password</label>
               <input
                 v-model="password"
                 type="password"
@@ -36,21 +33,29 @@
                 required
               />
             </div>
-            <button class="btn btn-primary w-100" :disabled="loading">
+
+            <button
+              class="btn btn-success w-100 fw-semibold"
+              :disabled="loading"
+            >
               {{ loading ? "Logging in..." : "Login" }}
             </button>
-            <p class="text-danger mt-2" v-if="error">{{ error }}</p>
+
+            <p class="text-danger mt-2 text-center" v-if="error">{{ error }}</p>
           </form>
         </div>
       </div>
-      <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-        <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-          <h4 class="mb-4">We are more than just a company</h4>
-          <p class="small mb-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+
+      <!-- Right Description Side -->
+      <div
+        class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center gradient-custom-2 text-white text-center px-4"
+      >
+        <div>
+          <h4 class="fw-bold mb-3">We are more than just a company</h4>
+          <p class="small">
+            Rkived helps you track, manage, and preserve what matters most.
+            Whether you're archiving memories or managing a product collection,
+            we're here to help.
           </p>
         </div>
       </div>
@@ -84,34 +89,19 @@ const handleLogin = async () => {
   }
 };
 </script>
+
 <style scoped>
 .gradient-custom-2 {
-  /* fallback for old browsers */
-  background: #fccb90;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right,
-    #ee7724,
-    #d8363a,
-    #dd3675,
-    #b44593
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  /* background: linear-gradient(to right, #8e56a6, #d8363a, #dd3675, #b44593); */
-  background: linear-gradient(to right, #6b705c, #cb997e, #a5a58d);
+  background: linear-gradient(to bottom left, #28a745, #000000);
+  height: 100%;
 }
 
-@media (min-width: 768px) {
-  .gradient-form {
-    height: 100vh !important;
-  }
+.gradient-form {
+  height: 100vh !important;
 }
-@media (min-width: 769px) {
-  .gradient-custom-2 {
-    border-top-right-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
-  }
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 </style>

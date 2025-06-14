@@ -1,6 +1,8 @@
 <template>
   <div class="container my-5">
-    <h2 class="mb-4 text-center">Product List</h2>
+    <h2 class="mb-4 text-center text-uppercase fw-bold border-bottom pb-2">
+      RKIVED Product List
+    </h2>
 
     <!-- Search Input -->
     <div class="mb-4">

@@ -130,7 +130,6 @@ export const useProductStore = defineStore("productStore", () => {
 
     // Filter#2b: single category sidebar filter
     else if (selectedCategoryId.value !== null) {
-      // selectedCategoryIds.value = [];
       result = result.filter(
         (product) => product.category.id === selectedCategoryId.value
       );

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
     <div class="container-fluid">
       <!-- Left: Brand -->
-      <router-link to="/" class="navbar-brand fw-bold">Rkived</router-link>
+      <router-link to="/" class="navbar-brand fw-bold"> 📚 Rkived</router-link>
 
       <!-- Toggler for mobile -->
       <button
@@ -50,7 +50,13 @@
           v-else-if="isLoginPage || !userStore.user"
         >
           <li class="nav-item">
-            <router-link to="/login" class="nav-link">Login</router-link>
+            <router-link
+              to="/login"
+              class="nav-link border border-success px-3 py-1 rounded login-btn"
+              style="font-weight: 600"
+            >
+              Login
+            </router-link>
           </li>
         </ul>
       </div>
@@ -76,3 +82,16 @@ const logout = () => {
   router.push("/login");
 };
 </script>
+<style>
+.login-btn {
+  background-color: white;
+  transition: all 0.3s ease;
+  color: #198754;
+}
+
+.login-btn:hover {
+  background-color: #198754; /* Bootstrap 'success' color */
+  color: white;
+  text-decoration: none;
+}
+</style>

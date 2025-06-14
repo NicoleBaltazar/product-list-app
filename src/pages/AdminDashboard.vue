@@ -9,7 +9,7 @@
     </div>
 
     <table class="table table-bordered table-striped">
-      <thead class="table-dark">
+      <thead class="text-white" style="background-color: #28a745">
         <tr>
           <th>ID</th>
           <th>Title</th>

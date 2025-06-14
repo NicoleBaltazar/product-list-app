@@ -14,3 +14,14 @@ import { useProductStore } from "../stores/productStore";
 
 const productStore = useProductStore();
 </script>
+
+<style scoped>
+.custom-select-green {
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+.custom-select-green:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+</style>

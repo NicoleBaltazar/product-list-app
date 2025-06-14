@@ -1,7 +1,8 @@
 <template>
   <div class="p-3 border rounded shadow-sm filter-box">
-    <h5 class="filter-title mb-3 text-uppercase">Filters</h5>
-
+    <H5 class="mb-4 text-uppercase text-success fw-bold border-bottom pb-2">
+      Filters
+    </H5>
     <!-- Price Range -->
     <div class="mt-3">
       <label class="form-label fw-bold">Price Range</label>
